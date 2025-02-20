@@ -1,6 +1,4 @@
 import numpy as np
-from scipy.differentiate import derivative
-
 from Trajectory import plot_trajectory
 from constant_velocity_case import simple_linear_regression
 
@@ -13,7 +11,6 @@ z = np.array([1.0, 2.38, 2.49, 2.15, 2.59, 4.32])
 
 # defining time array
 t = np.array([1,2,3,4,5,6])
-
 
 # Start of 2.1
 
