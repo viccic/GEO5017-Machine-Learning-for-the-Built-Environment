@@ -37,13 +37,41 @@ beta_z, alpha_z = simple_linear_regression(t,z)
 print("beta for z: ", beta_z)
 print("alpha for z: ", alpha_z)
 
+# Learning rate
+learning_rate = 0.01
+
 # implementing gradient decent for x-dimension
 
-# with respect to intercept
+for it in range(100):
 
-derivative_sum_of_squares = -2 * ((x[0] - (alpha_x + beta_x * t[0])) + (x[1] - (alpha_x + beta_x * t[1])) + (x[2] - (alpha_x + beta_x * t[2]))
-+ (x[3] - (alpha_x + beta_x * t[3])) + (x[4] - (alpha_x + beta_x * t[4])) + (x[5] - (alpha_x + beta_x * t[5])))
+    # with respect to intercept
+    derivative_sum_of_squares_intercept = -2 * (
+                (x[0] - (alpha_x + beta_x * t[0])) + (x[1] - (alpha_x + beta_x * t[1])) + (
+                    x[2] - (alpha_x + beta_x * t[2]))
+                + (x[3] - (alpha_x + beta_x * t[3])) + (x[4] - (alpha_x + beta_x * t[4])) + (
+                            x[5] - (alpha_x + beta_x * t[5])))
 
+    diff_intercept = learning_rate * derivative_sum_of_squares_intercept
+    print('diff_intercept: ', diff_intercept)
+
+    # with respect to slope
+    derivative_sum_of_squares_slope = -2 * (
+                t[0] * (x[0] - (alpha_x + beta_x * t[0])) + t[1] * (x[1] - (alpha_x + beta_x * t[1])) + t[2] * (
+                    x[2] - (alpha_x + beta_x * t[2]))
+                + t[3] * (x[3] - (alpha_x + beta_x * t[3])) + t[4] * (x[4] - (alpha_x + beta_x * t[4])) + t[5] * (
+                            x[5] - (alpha_x + beta_x * t[5])))
+    diff_slope = learning_rate * derivative_sum_of_squares_slope
+    print('diff_slope: ', diff_slope)
+
+    if np.abs(diff_intercept) < 0.001 or np.abs(diff_slope) < 0.001:  # Check if the step size is smaller than the tolerance
+        break  # If yes, stop the algorithm
+    # print("iteration =", it, "\t\tx =", "{:.5f}".format(x), "\t\tf(x) =", "{:.3f}".format(function(x)))
+    alpha_x = alpha_x - diff_intercept  # Update the current intercept
+    beta_x = beta_x - diff_slope # Update the current
+    print("iteration: ", it)
+
+print("final alpha for x: ", alpha_x)
+print("final beta for x: ", beta_x)
 
 
 # End of 2.2.a

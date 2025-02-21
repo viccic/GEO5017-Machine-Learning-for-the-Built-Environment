@@ -5,6 +5,9 @@ def plot_trajectory(x,y,z):
     fig = plt.figure()
 
     ax = plt.axes(projection='3d')
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
 
     time = []
     for i in range(1, 7):
