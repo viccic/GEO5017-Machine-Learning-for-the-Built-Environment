@@ -7,7 +7,7 @@ def sum_for_variance(x):
 
     sum = 0
     for i in range(len(x)):
-        sum = (x[i] - x_average)**2
+        sum += (x[i] - x_average)**2
 
     return sum
 
@@ -19,30 +19,31 @@ def sum_for_covariance(x,y):
 
     sum = 0
     for i in range(len(x)):
-        sum = (x[i] - x_average)*(y[i] - y_average)
+        sum += (x[i] - x_average)*(y[i] - y_average)
 
     return sum
 
 def simple_linear_regression(x,y):
+    n = len(y)  # Sample size
 
     # computing sum for variance
     sum_variance = sum_for_variance(x)
 
     # computing variance
-    variance = 1 / (np.shape(y)[0] - 1) * sum_variance
+    variance = 1 / (n - 1) * sum_variance
 
     # computing sum for covariance
     sum_covariance = sum_for_covariance(x,y)
 
     # computing variance
-    covariance = 1 / (np.shape(y)[0] - 1) * sum_covariance
+    covariance = 1 / (n - 1) * sum_covariance
 
     # computing average value for x and y values
     x_average = np.average(x)
     y_average = np.average(y)
 
     # calculating beta and alpha
-    beta = covariance / variance
-    alpha = y_average - beta * x_average
+    slope = covariance / variance
+    intercept = y_average - slope * x_average
 
-    return beta, alpha
+    return slope, intercept
