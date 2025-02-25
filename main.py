@@ -15,7 +15,7 @@ t = np.array([1,2,3,4,5,6])
 # Start of 2.1
 
 # plotting the trajectory
-plot_trajectory(x,y,z)
+# plot_trajectory(x,y,z)
 
 # End of 2.1
 
@@ -115,7 +115,7 @@ for i in range(len(t)):
     y_new[i] = intercept_y + slope_y * t[i]
     z_new[i] = intercept_z + slope_z * t[i]
 
-plot_trajectory(x_new,y_new,z_new)
+# plot_trajectory(x_new,y_new,z_new)
 
 
 # End of 2.2.a
