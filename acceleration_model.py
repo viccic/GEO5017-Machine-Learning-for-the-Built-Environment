@@ -32,7 +32,7 @@ def gradient_function(positions, times, params):
         gradient_vector.append(gradient)
     return np.array(gradient_vector)
 
-
+#nbcjqwibi
 def gradient_descent(positions, times, function, gradient, learn_rate, max_iter, tol=0.001):
     """
     Performs gradient descent to minimize a given function.
