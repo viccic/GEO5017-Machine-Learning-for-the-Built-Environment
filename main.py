@@ -117,4 +117,5 @@ for i in range(len(t)):
 
 plot_trajectory(x_new,y_new,z_new)
 
+
 # End of 2.2.a
