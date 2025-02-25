@@ -104,44 +104,12 @@ print("Slope for y:", slope_y)
 print("Intercept for z:", intercept_z)
 print("Slope for z:", slope_z)
 
-x_new, y_new, z_new, estimated_position = np.zeros(6), np.zeros(6), np.zeros(6), np.zeros(6)
+x_new, y_new, z_new = np.zeros(6), np.zeros(6), np.zeros(6)
 for i in range(len(t)):
     x_new[i] = intercept_x + slope_x * t[i]
     y_new[i] = intercept_y + slope_y * t[i]
     z_new[i] = intercept_z + slope_z * t[i]
 
 plot_trajectory(x_new,y_new,z_new)
-
-# for it in range(100):
-#
-#     # with respect to intercept
-#     derivative_sum_of_squares_intercept = -2 * (
-#                 (x[0] - (intercept_x + slope_x * t[0])) + (x[1] - (intercept_x + slope_x * t[1])) + (
-#                     x[2] - (intercept_x + slope_x * t[2]))
-#                 + (x[3] - (intercept_x + slope_x * t[3])) + (x[4] - (intercept_x + slope_x * t[4])) + (
-#                             x[5] - (intercept_x + slope_x * t[5])))
-#
-#     diff_intercept = learning_rate * derivative_sum_of_squares_intercept
-#     print('diff_intercept: ', diff_intercept)
-#
-#     # with respect to slope
-#     derivative_sum_of_squares_slope = -2 * (
-#                 t[0] * (x[0] - (intercept_x + slope_x * t[0])) + t[1] * (x[1] - (intercept_x + slope_x * t[1])) + t[2] * (
-#                     x[2] - (intercept_x + slope_x * t[2]))
-#                 + t[3] * (x[3] - (intercept_x + slope_x * t[3])) + t[4] * (x[4] - (intercept_x + slope_x * t[4])) + t[5] * (
-#                             x[5] - (intercept_x + slope_x * t[5])))
-#     diff_slope = learning_rate * derivative_sum_of_squares_slope
-#     print('diff_slope: ', diff_slope)
-#
-#     if np.abs(diff_intercept) < 0.001 or np.abs(diff_slope) < 0.001:  # Check if the step size is smaller than the tolerance
-#         break  # If yes, stop the algorithm
-#     # print("iteration =", it, "\t\tx =", "{:.5f}".format(x), "\t\tf(x) =", "{:.3f}".format(function(x)))
-#     intercept_x = intercept_x - diff_intercept  # Update the current intercept
-#     slope_x = slope_x - diff_slope # Update the current
-#     print("iteration: ", it)
-#
-# print("final intercept for x: ", intercept_x)
-# print("final slope for x: ", slope_x)
-
 
 # End of 2.2.a
