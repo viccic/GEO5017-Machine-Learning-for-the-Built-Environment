@@ -1,6 +1,7 @@
 # Loading data
 
 import numpy as np
+from Trajectory import plot_trajectory
 
 
 # Load data into np array
@@ -56,8 +57,7 @@ def gradient_descent(positions, times, function, gradient, learn_rate, max_iter,
         params = params + diff  # Update the current point
     return params
 
+plot_trajectory()
 print(gradient_descent(coordinates, time_record, error_function, gradient_function, 0.0001, 100))
 
-def train(positions, times):
-    params = gradient_descent(positions, times, start, error_function, gradient_function, 0.1)
 
