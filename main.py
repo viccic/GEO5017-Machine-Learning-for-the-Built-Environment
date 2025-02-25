@@ -22,23 +22,26 @@ plot_trajectory(x,y,z)
 # Start of 2.2.a
 
 # implementing simple linear regression for x-dimension
-slope_x, intercept_x = simple_linear_regression(t,x)
-print("slope for x: ", slope_x)
-print("intercept for x: ", intercept_x)
-
-# implementing simple linear regression for y-dimension
-slope_y, intercept_y = simple_linear_regression(t,y)
-print("slope for y: ", slope_y)
-print("intercept for y: ", intercept_y)
-
-# implementing simple linear regression for z-dimension
-slope_z,intercept_z = simple_linear_regression(t,z)
-print("slope for z: ", slope_z)
-print("intercept for z: ", intercept_z)
+# slope_x, intercept_x = simple_linear_regression(t,x)
+# print("slope for x: ", slope_x)
+# print("intercept for x: ", intercept_x)
+#
+# # implementing simple linear regression for y-dimension
+# slope_y, intercept_y = simple_linear_regression(t,y)
+# print("slope for y: ", slope_y)
+# print("intercept for y: ", intercept_y)
+#
+# # implementing simple linear regression for z-dimension
+# slope_z,intercept_z = simple_linear_regression(t,z)
+# print("slope for z: ", slope_z)
+# print("intercept for z: ", intercept_z)
 
 # Learning rate and number of iterations
 learning_rate = 0.01
 num_iterations = 100
+
+slope_x, slope_y, slope_z = 1,1,1
+intercept_x, intercept_y, intercept_z = 0,0,0
 
 # implementing gradient decent
 for it in range(num_iterations):
@@ -93,6 +96,8 @@ for it in range(num_iterations):
 
     intercept_z -= diff_intercept_z
     slope_z -= diff_slope_z
+
+    print("iteration", it)
 
 print("\nFinal values:")
 print("Intercept for x:", intercept_x)
