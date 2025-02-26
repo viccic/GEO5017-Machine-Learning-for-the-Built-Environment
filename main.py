@@ -1,6 +1,6 @@
 import numpy as np
 from Trajectory import plot_trajectory
-from constant_velocity_case import simple_linear_regression
+from constant_velocity import constant_velocity_def
 
 # Importing data
 
@@ -21,98 +21,29 @@ t = np.array([1,2,3,4,5,6])
 
 # Start of 2.2.a
 
-# Learning rate and number of iterations
-learning_rate = 0.01
-num_iterations = 100
-
-slope_x, slope_y, slope_z = 1,1,1
-intercept_x, intercept_y, intercept_z = 0,0,0
-
-# implementing gradient decent
-for it in range(num_iterations):
-
-    # Calculate sum of squared errors
-    SSE_x = np.sum((x-(intercept_x + slope_x * t)) ** 2)
-    print("SSE_x: ", SSE_x)
-
-    SSE_y = np.sum((y - (intercept_y + slope_y * t)) ** 2)
-    print("SSE_y: ", SSE_y)
-
-    SSE_z = np.sum((z - (intercept_z + slope_z * t)) ** 2)
-    print("SSE_z: ", SSE_z)
-
-    # SSE_x = np.sum((x - (intercept_x + slope_x * t)) ** 2 + (y - (intercept_y + slope_y * t)) ** 2 + (z - (intercept_z + slope_z * t)) ** 2)
-
-    # FOR X-DIMENSION
-
-    # Compute gradient for intercept (∂L/∂intercept)
-    derivative_sum_of_squares_intercept_x = -2 * np.sum(x - (intercept_x + slope_x * t))
-
-    # Compute gradient for slope (∂L/∂slope)
-    derivative_sum_of_squares_slope_x = -2 * np.sum(t * (x - (intercept_x + slope_x * t)))
-
-    # Compute updates
-    diff_intercept_x = learning_rate * derivative_sum_of_squares_intercept_x
-    diff_slope_x = learning_rate * derivative_sum_of_squares_slope_x
-
-    # FOR Y-DIMENSION
-
-    # Compute gradient for intercept (∂L/∂intercept)
-    derivative_sum_of_squares_intercept_y = -2 * np.sum(y - (intercept_y + slope_y * t))
-
-    # Compute gradient for slope (∂L/∂slope)
-    derivative_sum_of_squares_slope_y = -2 * np.sum(t * (y - (intercept_y + slope_y * t)))
-
-    # Compute updates
-    diff_intercept_y = learning_rate * derivative_sum_of_squares_intercept_y
-    diff_slope_y = learning_rate * derivative_sum_of_squares_slope_y
-
-    # FOR Z-DIMENSION
-
-    # Compute gradient for intercept (∂L/∂intercept)
-    derivative_sum_of_squares_intercept_z = -2 * np.sum(z - (intercept_z + slope_z * t))
-
-    # Compute gradient for slope (∂L/∂slope)
-    derivative_sum_of_squares_slope_z = -2 * np.sum(t * (z - (intercept_z + slope_z * t)))
-
-    # Compute updates
-    diff_intercept_z = learning_rate * derivative_sum_of_squares_intercept_z
-    diff_slope_z = learning_rate * derivative_sum_of_squares_slope_z
-
-    # Convergence check
-    if np.abs(diff_intercept_x) < 0.001 and np.abs(diff_slope_x) < 0.001 and np.abs(diff_intercept_y) < 0.001 and np.abs(diff_slope_y) < 0.001 and np.abs(diff_intercept_z) < 0.001 and np.abs(diff_slope_z) < 0.001:
-        print("Converged!")
-        break
-
-    # Update parameters
-    intercept_x -= diff_intercept_x
-    slope_x -= diff_slope_x
-
-    intercept_y -= diff_intercept_y
-    slope_y -= diff_slope_y
-
-    intercept_z -= diff_intercept_z
-    slope_z -= diff_slope_z
-
-    print("iteration", it)
+constant_coefficient_x, velocity_x, constant_coefficient_y, velocity_y, constant_coefficient_z, velocity_z, SSE_x, SSE_y, SSE_z, total_SSE = constant_velocity_def(x,y,z,t)
 
 print("\nFinal values:")
-print("Intercept for x:", intercept_x)
-print("Slope for x:", slope_x)
+print(f"Constant coefficient for x: {constant_coefficient_x:.4f}")
+print(f"Velocity for x: {velocity_x: .4}")
 
-print("Intercept for y:", intercept_y)
-print("Slope for y:", slope_y)
+print(f"Constant coefficient for y: {constant_coefficient_y:.4f}")
+print(f"Velocity for y: {velocity_y:.4}")
 
-print("Intercept for z:", intercept_z)
-print("Slope for z:", slope_z)
+print(f"Constant coefficient for z: {constant_coefficient_z:.4f}")
+print(f"Slope for z: {velocity_z:.4f}")
+
+print(f"SSE_x : {SSE_x:.4f}")
+print(f"SSE_y : {SSE_y:.4f}")
+print(f"SSE_z : {SSE_z:.4f}")
+print(f"Residual Error (SSE): {total_SSE:.4f}")
 
 x_new, y_new, z_new = np.zeros(6), np.zeros(6), np.zeros(6)
 for i in range(len(t)):
-    x_new[i] = intercept_x + slope_x * t[i]
-    y_new[i] = intercept_y + slope_y * t[i]
-    z_new[i] = intercept_z + slope_z * t[i]
+    x_new[i] = constant_coefficient_x + velocity_x * t[i]
+    y_new[i] = constant_coefficient_y + velocity_y * t[i]
+    z_new[i] = constant_coefficient_z + velocity_z * t[i]
 
-# plot_trajectory(x_new,y_new,z_new)
-
+plot_trajectory(x_new,y_new,z_new,x,y,z)
 
 # End of 2.2.a
