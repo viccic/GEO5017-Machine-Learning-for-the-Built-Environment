@@ -17,8 +17,7 @@ def constant_velocity_def(x,y,z,t):
     for learning_rate in np.arange(0.001,0.011,0.001):
         for num_iterations in range(100,1001,100):
 
-            velocity_x, velocity_y, velocity_z = (x[-1] - x[0]) / (t[-1] - t[0]), (y[-1] - y[0]) / (t[-1] - t[0]), (
-                        z[-1] - z[0]) / (t[-1] - t[0])
+            velocity_x, velocity_y, velocity_z = (x[-1] - x[0]) / (t[-1] - t[0]), (y[-1] - y[0]) / (t[-1] - t[0]), (z[-1] - z[0]) / (t[-1] - t[0])
             constant_coefficient_x, constant_coefficient_y, constant_coefficient_z = np.mean(x), np.mean(y), np.mean(z)
 
             for it in range(num_iterations):
@@ -98,15 +97,17 @@ def constant_velocity_def(x,y,z,t):
 
     min_total_SSE = np.min(list(total_SSE_dict.values()))
     min_total_SSE_key = min(total_SSE_dict, key=total_SSE_dict.get)
-    print(min_total_SSE_key)
+    print(f"Best learning rate: {learning_rate_plus_iteration_dict[min_total_SSE_key][0]:.2f}")
+    print("Best number of iteration: ", learning_rate_plus_iteration_dict[min_total_SSE_key][1])
+
     constant_coefficient_x, velocity_x = con_coeff_plus_velocity_x_dict[min_total_SSE_key]
     constant_coefficient_y, velocity_y = con_coeff_plus_velocity_y_dict[min_total_SSE_key]
     constant_coefficient_z, velocity_z = con_coeff_plus_velocity_z_dict[min_total_SSE_key]
+    total_velocity = np.sqrt(velocity_x**2 + velocity_y**2 + velocity_z**2)
     total_SSE = min_total_SSE
     SSE_x = SSE_x_dict[min_total_SSE_key]
     SSE_y = SSE_y_dict[min_total_SSE_key]
     SSE_z = SSE_z_dict[min_total_SSE_key]
-    print(learning_rate_plus_iteration_dict[min_total_SSE_key])
 
     x = np.array(list(total_SSE_dict.keys()))
     y = np.array(list(total_SSE_dict.values()))
@@ -129,4 +130,4 @@ def constant_velocity_def(x,y,z,t):
     plt.legend()
     plt.show()
 
-    return constant_coefficient_x, velocity_x, constant_coefficient_y, velocity_y, constant_coefficient_z, velocity_z, SSE_x, SSE_y, SSE_z, total_SSE
+    return constant_coefficient_x, velocity_x, constant_coefficient_y, velocity_y, constant_coefficient_z, velocity_z, total_velocity, SSE_x, SSE_y, SSE_z, total_SSE

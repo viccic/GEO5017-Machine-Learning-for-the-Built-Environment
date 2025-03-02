@@ -18,7 +18,6 @@ def plot_trajectory(x,y,z):
     ax.plot3D(x, y, z)
     ax.set_title('Trajectory')
 
-
     # creating annotations for timestamps
     for i, txt in enumerate(time):
         if i == 0 or i == 4 or i == 5:
