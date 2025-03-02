@@ -1,10 +1,7 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 def constant_velocity_def(x,y,z,t):
-
-    # Learning rate and number of iterations
-    # learning_rate = 0.01
-    # num_iterations = 100
 
     # Dictionary to store results and coefficients
     learning_rate_plus_iteration_dict = {}
@@ -66,7 +63,6 @@ def constant_velocity_def(x,y,z,t):
                 if np.abs(diff_constant_coefficient_x) < 0.001 and np.abs(diff_velocity_x) < 0.001 and np.abs(
                         diff_constant_coefficient_y) < 0.001 and np.abs(diff_velocity_y) < 0.001 and np.abs(
                     diff_constant_coefficient_z) < 0.001 and np.abs(diff_velocity_z) < 0.001:
-                    # print("Converged!")
                     break
 
                 # Update parameters
@@ -88,7 +84,7 @@ def constant_velocity_def(x,y,z,t):
 
             total_SSE = SSE_x + SSE_y + SSE_z
 
-            # Store total SSE in dictionary
+            # Store learning rate, number of iterations, velocity, con. coefficient and SSE per dimension and total SSE for each solver in dictionaries
             learning_rate_plus_iteration_dict[indexing]= [learning_rate, num_iterations]
             con_coeff_plus_velocity_x_dict[indexing]= [constant_coefficient_x,velocity_x]
             con_coeff_plus_velocity_y_dict[indexing] = [constant_coefficient_y,velocity_y]
@@ -102,6 +98,7 @@ def constant_velocity_def(x,y,z,t):
 
     min_total_SSE = np.min(list(total_SSE_dict.values()))
     min_total_SSE_key = min(total_SSE_dict, key=total_SSE_dict.get)
+    print(min_total_SSE_key)
     constant_coefficient_x, velocity_x = con_coeff_plus_velocity_x_dict[min_total_SSE_key]
     constant_coefficient_y, velocity_y = con_coeff_plus_velocity_y_dict[min_total_SSE_key]
     constant_coefficient_z, velocity_z = con_coeff_plus_velocity_z_dict[min_total_SSE_key]
@@ -110,5 +107,26 @@ def constant_velocity_def(x,y,z,t):
     SSE_y = SSE_y_dict[min_total_SSE_key]
     SSE_z = SSE_z_dict[min_total_SSE_key]
     print(learning_rate_plus_iteration_dict[min_total_SSE_key])
+
+    x = np.array(list(total_SSE_dict.keys()))
+    y = np.array(list(total_SSE_dict.values()))
+
+    plt.scatter(x, y)
+    # Highlight solver with the mininimum SSE
+    highlight_index = min_total_SSE_key
+    plt.scatter(x[highlight_index], y[highlight_index], color='red', label='Best Solver')
+
+    # Optional: add annotation
+    plt.annotate(f'Index {highlight_index}',
+                 (x[highlight_index], y[highlight_index]),
+                 textcoords="offset points",
+                 xytext=(10, 10),
+                 ha='center')
+
+    plt.xlabel('Solver Index')
+    plt.ylabel('Total SSE')
+    plt.title('Total SSE per Solver')
+    plt.legend()
+    plt.show()
 
     return constant_coefficient_x, velocity_x, constant_coefficient_y, velocity_y, constant_coefficient_z, velocity_z, SSE_x, SSE_y, SSE_z, total_SSE

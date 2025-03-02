@@ -1,6 +1,7 @@
 import numpy as np
 from Trajectory import plot_trajectory
-from constant_velocity import constant_velocity_def
+from Constant_velocity import constant_velocity_def
+from Visualize_initial_plus_estimated_positions import visualize
 
 # Importing data
 
@@ -15,7 +16,7 @@ t = np.array([1,2,3,4,5,6])
 # Start of 2.1
 
 # plotting the trajectory
-# plot_trajectory(x,y,z)
+plot_trajectory(x,y,z)
 
 # End of 2.1
 
@@ -44,6 +45,6 @@ for i in range(len(t)):
     y_new[i] = constant_coefficient_y + velocity_y * t[i]
     z_new[i] = constant_coefficient_z + velocity_z * t[i]
 
-plot_trajectory(x_new,y_new,z_new,x,y,z)
+visualize(x_new,y_new,z_new,x,y,z)
 
 # End of 2.2.a

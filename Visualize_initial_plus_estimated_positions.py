@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-def plot_trajectory(x,y,z):
+def visualize(x,y,z, x0, y0, z0):
 
     fig = plt.figure()
 
@@ -18,6 +18,9 @@ def plot_trajectory(x,y,z):
     ax.plot3D(x, y, z)
     ax.set_title('Trajectory')
 
+    # plotting
+    ax.scatter(x0, y0, z0)
+    ax.plot3D(x0, y0, z0)
 
     # creating annotations for timestamps
     for i, txt in enumerate(time):
