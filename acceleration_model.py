@@ -2,6 +2,7 @@
 
 import numpy as np
 from Trajectory import plot_trajectory
+from Visualize_initial_plus_estimated_positions import visualize
 
 
 # Load data into np array
@@ -12,7 +13,8 @@ z_coords = np.array([1.00, 2.38, 2.49, 2.15, 2.59, 4.32])
 coordinates = np.vstack([x_coords, y_coords, z_coords]).transpose()
 time_record = np.array([1.00, 2.00, 3.00, 4.00, 5.00, 6.00])
 
-
+fig_0 = plot_trajectory(x_coords, y_coords, z_coords)
+fig_0.savefig("output/trajectory.png")
 
 def train(positions, times):
 
@@ -34,7 +36,10 @@ def train(positions, times):
 
     def gradient_descent(positions, times, learn_rate=0.0001, max_iter=100, tol=0.001):
         # params = np.random.uniform(1.0, 3.0, size=3)
-        params = np.array([0,1,1])
+        a0 = np.array([0,1,1])
+        a1 = np.array([0,1,1])
+        a2 = np.array([0,1,1])
+        params = np.array([a0, a1, a2])
         for it in range(max_iter):
             diff = learn_rate * gradient_vector(positions, times, params)
             if np.all(np.abs(diff) < tol):
@@ -43,7 +48,7 @@ def train(positions, times):
         return params
 
     params = gradient_descent(positions, times)
-    e = objective_function(coordinates, time_record, params)
+    e = objective_function(positions, times, params)
 
     return params, e
 
@@ -63,11 +68,16 @@ def predict(model, times):
 
     return predictions
 
-print(predict(trained_model, time_record))
-predictions = predict(trained_model, time_record)
+# print(predict(trained_model, time_record))
+# Predict positions from second 1 to 7
+time_record_1 = np.append(time_record, 7.00)
+predictions = predict(trained_model, time_record_1)
+sec_7 = predictions[-1]
+x_1 = np.append(x_coords, sec_7[0])
+y_1 = np.append(y_coords, sec_7[1])
+z_1 = np.append(z_coords, sec_7[2])
 
-
-#Print predicitions
+#Plot predictions and positions
 x = []
 y = []
 z = []
@@ -76,61 +86,10 @@ for prediction in predictions:
     y.append(prediction[1])
     z.append(prediction[2])
 
-plot_trajectory(x,y,z, x_coords, y_coords, z_coords)
 
-
-#
-# # params = train()
-# #
-# # def predict(params):
-# # def objective_function(positions, times):
-#
-#
-# # Define error function
-# def error_function(positions, times, params):
-#     e = 0
-#     for p, t in zip(positions, times):
-#         e += (p - (params[0] + params[1]*t +params[2]*t**2))**2
-#     return e
-#
-#
-# #Define gradient function: derivative of error function
-# def gradient_function(positions, times, params):
-#     gradient_vector = []
-#     # Calculate components
-#     for i, param in enumerate(params):
-#         gradient = 0
-#         for p, t in zip(positions, times):
-#             gradient += 2 * (p - (params[0] + params[1] * t + params[2] * t ** 2)) * t ** i
-#         gradient_vector.append(gradient)
-#     return np.array(gradient_vector)
-#
-#
-# def gradient_descent(positions, times, function, gradient, learn_rate, max_iter, tol=0.001):
-#     """
-#     Performs gradient descent to minimize a given function.
-#
-#     Parameters:
-#     start (float): The starting point for the algorithm.
-#     function (callable): The function to minimize.
-#     gradient (callable): The gradient of the function.
-#     learn_rate (float): The learning rate (step size).
-#     max_iter (int): The maximum number of iterations.
-#     tol (float): The tolerance for stopping the algorithm.
-#
-#     Returns:
-#     float: The point at which the function is minimized.
-#     """
-#     params = np.random.randint(1, 10, size=3) # Initialize the starting point
-#     for it in range(max_iter):
-#         diff = learn_rate * gradient(positions, times, params)  # Calculate the step size
-#         if np.any(np.abs(diff) < tol):  # Check if the step size is smaller than the tolerance
-#             break  # If yes, stop the algorithm
-#         #print("iteration =", it, "\t\tparams =", "{:.5f}".format(params), "\t\tf(x) =", "{:.3f}".format(function(x)))
-#         params = params + diff  # Update the current point
-#     return params
-#
-# plot_trajectory(x_coords, y_coords, z_coords)
-# print(gradient_descent(coordinates, time_record, error_function, gradient_function, 0.0001, 100))
-
-
+fig_1 = plot_trajectory(x_1, y_1, z_1)
+fig_1.savefig('output/second_7.png')
+fig_1.suptitle("Predicted postions")
+fig_2 = plot_trajectory(x, y, z)
+fig_2.savefig('output/predicted.png')
+fig_2.suptitle("Predicted position at t=7")
