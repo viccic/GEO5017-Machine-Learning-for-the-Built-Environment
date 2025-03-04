@@ -22,6 +22,7 @@ plot_trajectory(x,y,z)
 
 # Start of 2.2.a
 
+# Set learning rate and number of iterations
 learning_rate = 0.01
 num_iterations = 200
 constant_coefficient_x, velocity_x, constant_coefficient_y, velocity_y, constant_coefficient_z, velocity_z, SSE_x, SSE_y, SSE_z = constant_velocity_def(x, y, z, t, learning_rate, num_iterations)
