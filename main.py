@@ -22,24 +22,23 @@ plot_trajectory(x,y,z)
 
 # Start of 2.2.a
 
-constant_coefficient_x, velocity_x, constant_coefficient_y, velocity_y, constant_coefficient_z, velocity_z, total_velocity, SSE_x, SSE_y, SSE_z, total_SSE = constant_velocity_def(x,y,z,t)
+learning_rate = 0.01
+num_iterations = 200
+constant_coefficient_x, velocity_x, constant_coefficient_y, velocity_y, constant_coefficient_z, velocity_z, SSE_x, SSE_y, SSE_z = constant_velocity_def(x, y, z, t, learning_rate, num_iterations)
 
-print("\nFinal values:")
-print(f"Constant coefficient for x: {constant_coefficient_x:.4}")
-print(f"Velocity for x: {velocity_x:.4}")
+print("\nFinal values for constant velocity case:")
+print(f"Constant coefficient for x: {constant_coefficient_x:.3f}")
+print(f"Velocity for x: {velocity_x:.3f}")
 
-print(f"Constant coefficient for y: {constant_coefficient_y:.4}")
-print(f"Velocity for y: {velocity_y:.4}")
+print(f"Constant coefficient for y: {constant_coefficient_y:.3f}")
+print(f"Velocity for y: {velocity_y:.3f}")
 
-print(f"Constant coefficient for z: {constant_coefficient_z:.4}")
-print(f"Velocity for z: {velocity_z:.4}")
+print(f"Constant coefficient for z: {constant_coefficient_z:.3f}")
+print(f"Velocity for z: {velocity_z:.3f}")
 
-print(f"Total Velocity: {total_velocity:.4}")
-
-print(f"SSE_x : {SSE_x:.4}")
-print(f"SSE_y : {SSE_y:.4}")
-print(f"SSE_z : {SSE_z:.4}")
-print(f"Residual Error (SSE): {total_SSE:.4}")
+print(f"SSE_x : {SSE_x:.3f}")
+print(f"SSE_y : {SSE_y:.3f}")
+print(f"SSE_z : {SSE_z:.3f}")
 
 x_new, y_new, z_new = np.zeros(6), np.zeros(6), np.zeros(6)
 for i in range(len(t)):
