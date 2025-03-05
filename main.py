@@ -1,8 +1,8 @@
 import numpy as np
-from Trajectory import plot_trajectory
+from trajectory import plot_trajectory
 from constant_velocity_case import constant_velocity_def
 from constant_acceleration_case import constant_acceleration_def
-from Visualize_initial_plus_estimated_positions import visualize
+from visualize_initial_plus_estimated_positions import visualize
 
 # Importing data
 
