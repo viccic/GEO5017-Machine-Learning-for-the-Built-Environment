@@ -10,9 +10,9 @@ def plot_trajectory(x,y,z):
     ax.set_zlabel('Z')
 
     #Set limit for axes
-    ax.set_xlim(-2, 2)
-    ax.set_ylim(-5, 2)
-    ax.set_zlim(0, 5)
+    # ax.set_xlim(-2, 2)
+    # ax.set_ylim(-5, 2)
+    # ax.set_zlim(0, 5)
 
     time = []
     for i in range(1, len(x)+1):

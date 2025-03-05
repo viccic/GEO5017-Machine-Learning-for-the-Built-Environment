@@ -39,12 +39,12 @@ class acceleration_model:
             return np.array(gradient_vector)
 
         def gradient_descent(positions, times, learn_rate, max_iter, tol):
-            params = np.array([0,0,0])
+            params = np.array([0,1,1])
             for it in range(max_iter):
                 diff = learn_rate * gradient_vector(positions, times, params)
                 if np.all(np.abs(diff) < tol):
                     break
-            params = params - diff
+                params = params - diff
             return params
 
         params = gradient_descent(positions, times, learn_rate, max_iter, tol)
@@ -53,7 +53,7 @@ class acceleration_model:
 
     def predict(self, model, times):
         params = model[0]
-        if type(times) == list:
+        if isinstance(times,list) or isinstance(times, np.ndarray):
             predictions = []
             for t in times:
                 predicted_position = params[0] + params[1] * t + params[2] * t ** 2
@@ -63,32 +63,18 @@ class acceleration_model:
             predicted_position = params[0] + params[1] * times + params[2] * times ** 2
             return predicted_position
 
-a = acceleration_model()
-trained = a.train(z_coords, time_record, 0.0001, 100, 0.01)
-print(trained)
 
-# print(predict(trained_model, time_record))
-# Predict positions from second 1 to 7
-# time_record_1 = np.append(time_record, 7.00)
-# predictions = predict(trained_model, time_record_1)
-# sec_7 = predictions[-1]
-# x_1 = np.append(x_coords, sec_7[0])
-# y_1 = np.append(y_coords, sec_7[1])
-# z_1 = np.append(z_coords, sec_7[2])
-#
-# #Plot predictions and positions
-# x = []
-# y = []
-# z = []
-# for prediction in predictions:
-#     x.append(prediction[0])
-#     y.append(prediction[1])
-#     z.append(prediction[2])
-#
-#
-# fig_1 = plot_trajectory(x_1, y_1, z_1)
-# fig_1.savefig('output/second_7.png')
-# fig_1.suptitle("Predicted postions")
-# fig_2 = plot_trajectory(x, y, z)
-# fig_2.savefig('output/predicted.png')
-# fig_2.suptitle("Predicted position at t=7")
+x_axis = acceleration_model()
+trained_model_x = x_axis.train(x_coords, time_record, learn_rate=0.0001, max_iter=100000, tol=0.0001)
+print(trained_model_x)
+y_axis = acceleration_model()
+trained_model_y = y_axis.train(y_coords, time_record, learn_rate=0.0001, max_iter=10000, tol=0.0001)
+print(trained_model_y)
+z_axis = acceleration_model()
+trained_model_z = z_axis.train(z_coords, time_record, learn_rate=0.0001, max_iter=10000, tol=0.0001)
+print(trained_model_z)
+
+prediction_x = x_axis.predict(trained_model_x, time_record)
+prediction_y = y_axis.predict(trained_model_y, time_record)
+prediction_z = z_axis.predict(trained_model_z, time_record)
+plot_trajectory(prediction_x, prediction_y, prediction_z)
