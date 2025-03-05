@@ -1,7 +1,8 @@
 import numpy as np
 from Trajectory import plot_trajectory
-from Constant_velocity import constant_velocity_def
+from constant_velocity import constant_velocity_def
 from Visualize_initial_plus_estimated_positions import visualize
+from constant_acceleration import acceleration_model
 
 # Importing data
 
@@ -50,3 +51,19 @@ for i in range(len(t)):
 visualize(x_new,y_new,z_new,x,y,z)
 
 # End of 2.2.a
+
+# Start of 2.2.b
+x_axis = acceleration_model()
+trained_model_x = x_axis.train(x, t, learn_rate=0.0001, max_iter=100, tol=0.01)
+y_axis = acceleration_model()
+trained_model_y = y_axis.train(y, t, learn_rate=0.0001, max_iter=100, tol=0.01)
+z_axis = acceleration_model()
+trained_model_z = z_axis.train(z, t, learn_rate=0.0001, max_iter=100, tol=0.01)
+
+print("\nFinal values for constant acceleration case:")
+print(f"Parameters for x --> a0: {trained_model_x[0][0]:.3f}, a1: {trained_model_x[0][1]:.3f}, a2:{trained_model_x[0][2]:.3f}")
+print(f"Parameters for y --> a0: {trained_model_y[0][0]:.3f}, a1: {trained_model_y[0][1]:.3f}, a2:{trained_model_y[0][2]:.3f}")
+print(f"Parameters for z --> a0: {trained_model_z[0][0]:.3f}, a1: {trained_model_z[0][1]:.3f}, a2:{trained_model_z[0][2]:.3f}")
+print(f"SSE_x : {trained_model_x[1]:.3f}")
+print(f"SSE_y : {trained_model_y[1]:.3f}")
+print(f"SSE_z : {trained_model_z[1]:.3f}")

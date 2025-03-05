@@ -45,12 +45,10 @@ class acceleration_model:
                 if np.all(np.abs(diff) < tol):
                     break
             params = params - diff
-            error = objective_function(positions, times, params)
-            print(error)
             return params
 
-        params = gradient_descent(self)
-        error = objective_function(self, params)
+        params = gradient_descent(positions, times, learn_rate, max_iter, tol)
+        error = objective_function(positions, times, params)
         return params, error
 
     def predict(self, model, times):
@@ -64,6 +62,10 @@ class acceleration_model:
         elif type(times) == int:
             predicted_position = params[0] + params[1] * times + params[2] * times ** 2
             return predicted_position
+
+a = acceleration_model()
+trained = a.train(z_coords, time_record, 0.0001, 100, 0.01)
+print(trained)
 
 # print(predict(trained_model, time_record))
 # Predict positions from second 1 to 7
