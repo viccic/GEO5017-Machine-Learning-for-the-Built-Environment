@@ -20,4 +20,6 @@ def visualize(x,y,z, x0, y0, z0):
 
     plt.show()
 
+    return fig
+
 

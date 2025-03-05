@@ -45,9 +45,9 @@ def constant_velocity_def(x,y,z,t,learning_rate,num_iterations):
         diff_velocity_z = learning_rate * grad_sum_of_squares_velocity_z
 
         # Convergence check
-        if np.abs(diff_constant_coefficient_x) < 0.001 and np.abs(diff_velocity_x) < 0.001 and np.abs(
-                diff_constant_coefficient_y) < 0.001 and np.abs(diff_velocity_y) < 0.001 and np.abs(
-            diff_constant_coefficient_z) < 0.001 and np.abs(diff_velocity_z) < 0.001:
+        if np.abs(diff_constant_coefficient_x) < 0.0001 and np.abs(diff_velocity_x) < 0.0001 and np.abs(
+                diff_constant_coefficient_y) < 0.0001 and np.abs(diff_velocity_y) < 0.0001 and np.abs(
+            diff_constant_coefficient_z) < 0.0001 and np.abs(diff_velocity_z) < 0.0001:
             break
 
         # Update parameters
