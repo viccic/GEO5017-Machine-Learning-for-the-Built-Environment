@@ -34,7 +34,7 @@ class acceleration_model:
             for i, param in enumerate(params):
                 gradient = 0
                 for p, t in zip(positions, times):
-                    gradient -= 2 * (p - (params[0] + params[1] * t + params[2] * t ** 2)) * t ** i
+                    gradient = -2 * (p - (params[0] + params[1] * t + params[2] * t ** 2)) * t ** i
                 gradient_vector.append(gradient)
             return np.array(gradient_vector)
 
