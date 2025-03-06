@@ -48,8 +48,8 @@ constant_coefficient_x, velocity_x, accelaration_x, constant_coefficient_y, velo
 
 print("\nFinal values for constant acceleration case:")
 print(f"Parameters for x --> α0: {constant_coefficient_x:.3f}, α1: {velocity_x:.3f}, α2: {accelaration_x:.3f}")
-print(f"Parameters for y --> α0: {constant_coefficient_y:.3f}, α1: {velocity_y:.3f}, α2: {accelaration_x:.3f}")
-print(f"Parameters for z --> α0: {constant_coefficient_z:.3f}, α1: {velocity_z:.3f}, α2: {accelaration_x:.3f}")
+print(f"Parameters for y --> α0: {constant_coefficient_y:.3f}, α1: {velocity_y:.3f}, α2: {accelaration_y:.3f}")
+print(f"Parameters for z --> α0: {constant_coefficient_z:.3f}, α1: {velocity_z:.3f}, α2: {accelaration_z:.3f}")
 print(f"SSE_x : {SSE_x:.3f}")
 print(f"SSE_y : {SSE_y:.3f}")
 print(f"SSE_z : {SSE_z:.3f}")
@@ -62,10 +62,16 @@ x_7 = constant_coefficient_x + velocity_x * 7 + accelaration_x * 7 ** 2
 y_7 = constant_coefficient_y + velocity_y * 7 + accelaration_y * 7 ** 2
 z_7 = constant_coefficient_z + velocity_z * 7 + accelaration_z * 7 ** 2
 
-x = np.append(x, x_7)
-y = np.append(y, y_7)
-z = np.append(z, z_7)
+print("\nPredicted position for t = 7 :")
+print(f"x = {x_7:.3f}")
+print(f"y = {y_7:.3f}")
+print(f"z = {z_7:.3f}")
+
+x = np.append(x,x_7)
+y = np.append(y,y_7)
+z = np.append(z,z_7)
 
 fig_2 = plot_trajectory(x,y,z)
 fig_1.savefig('./output/Predicted_position.png')
 
+# End of 2.2.c

@@ -3,10 +3,6 @@ import numpy as np
 def constant_acceleration_def(x,y,z,t,learning_rate,num_iterations):
 
     # Initialize velocities and constants
-    # velocity_x, velocity_y, velocity_z = (x[-1] - x[0]) / (t[-1] - t[0]), (y[-1] - y[0]) / (t[-1] - t[0]), (z[-1] - z[0]) / (t[-1] - t[0])
-    # constant_coefficient_x, constant_coefficient_y, constant_coefficient_z = np.mean(x), np.mean(y), np.mean(z)
-
-
     constant_coefficient_x, constant_coefficient_y, constant_coefficient_z = np.mean(x), np.mean(y), np.mean(z)
     velocity_x, velocity_y, velocity_z = 1,1,1
     accelaration_x, accelaration_y, accelaration_z = 1,1,1
