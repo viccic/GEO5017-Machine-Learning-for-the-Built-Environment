@@ -16,7 +16,6 @@ def plot_trajectory(x,y,z):
     # plotting
     ax.scatter(x, y, z)
     ax.plot3D(x, y, z)
-    ax.set_title('Trajectory')
 
     # creating annotations for timestamps
     for i, txt in enumerate(time):

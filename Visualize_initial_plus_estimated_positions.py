@@ -12,7 +12,6 @@ def visualize(x,y,z, x0, y0, z0):
     # plotting
     ax.scatter(x, y, z)
     ax.plot3D(x, y, z)
-    ax.set_title('Initial and Estimated Positions')
 
     # plotting
     ax.scatter(x0, y0, z0)
