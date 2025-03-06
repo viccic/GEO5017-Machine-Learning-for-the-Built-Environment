@@ -80,6 +80,6 @@ y = np.append(y,y_7)
 z = np.append(z,z_7)
 
 fig_2 = plot_trajectory(x,y,z)
-fig_1.savefig('./output/Predicted_position.png')
+fig_2.savefig('./output/Predicted_position.png')
 
 # End of 2.2.c
