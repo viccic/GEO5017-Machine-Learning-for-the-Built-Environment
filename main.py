@@ -47,7 +47,7 @@ for i in range(6):
     z_new[i] = constant_coefficient_z + velocity_z * t[i]
 
 fig_2 = visualize(x,y,z,x_new,y_new,z_new)
-fig_2.savefig('./output/Initial_trajectory_and_Constant_velocity_model.png')
+fig_2.savefig('./output/Real_trajectory_and_Constant_velocity_model.png')
 
 # End of 2.2.a
 
@@ -76,7 +76,7 @@ for i in range(6):
     z_new[i] = constant_coefficient_z + velocity_z * t[i] + acceleration_z * t[i] ** 2
 
 fig_3 = visualize(x,y,z,x_new,y_new,z_new)
-fig_3.savefig('./output/Initial_trajectory_and_Constant_acceleration_model.png')
+fig_3.savefig('./output/Real_trajectory_and_Constant_acceleration_model.png')
 
 # End of 2.2.b
 
