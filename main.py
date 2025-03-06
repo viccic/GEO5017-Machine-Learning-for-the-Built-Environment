@@ -38,7 +38,7 @@ print(f"SSE_x : {SSE_x:.3f}")
 print(f"SSE_y : {SSE_y:.3f}")
 print(f"SSE_z : {SSE_z:.3f}")
 
-# Plot the initial and the estimated model for constant velocity
+# Plot the real trajectory and the estimated model for constant velocity
 x_new, y_new, z_new = np.zeros(6), np.zeros(6), np.zeros(6)
 
 for i in range(6):
@@ -67,7 +67,7 @@ print(f"SSE_x : {SSE_x:.3f}")
 print(f"SSE_y : {SSE_y:.3f}")
 print(f"SSE_z : {SSE_z:.3f}")
 
-# Plot the initial and the estimated model for constant acceleration
+# Plot the real trajectory and the estimated model for constant acceleration
 x_new, y_new, z_new = np.zeros(6), np.zeros(6), np.zeros(6)
 
 for i in range(6):
