@@ -1,6 +1,6 @@
 import numpy as np
 
-def constant_acceleration_def(x,y,z,t,learning_rate,num_iterations):
+def constant_acceleration_def(x,y,z,t,learning_rate,num_iterations,tolerance):
 
     # Initialize velocities and constants
     constant_coefficient_x, constant_coefficient_y, constant_coefficient_z = np.mean(x), np.mean(y), np.mean(z)
@@ -54,10 +54,10 @@ def constant_acceleration_def(x,y,z,t,learning_rate,num_iterations):
         diff_accelaration_z = learning_rate * grad_sum_of_squares_accelaration_z
 
         # Convergence check
-        if (np.abs(diff_constant_coefficient_x) < 0.0001 and np.abs(diff_velocity_x) < 0.0001 and np.abs(
-                diff_constant_coefficient_y) < 0.0001 and np.abs(diff_velocity_y) < 0.0001 and np.abs(
-            diff_constant_coefficient_z) < 0.0001 and np.abs(diff_velocity_z) < 0.0001 and
-                np.abs(diff_accelaration_x) < 0.0001 and np.abs(diff_accelaration_y) < 0.0001 and np.abs(diff_accelaration_z) < 0.0001):
+        if (np.abs(diff_constant_coefficient_x) < tolerance and np.abs(diff_velocity_x) < tolerance and np.abs(
+                diff_constant_coefficient_y) < tolerance and np.abs(diff_velocity_y) < tolerance and np.abs(
+            diff_constant_coefficient_z) < tolerance and np.abs(diff_velocity_z) < tolerance and
+                np.abs(diff_accelaration_x) < tolerance and np.abs(diff_accelaration_y) < tolerance and np.abs(diff_accelaration_z) < tolerance):
             break
 
         # Update parameters

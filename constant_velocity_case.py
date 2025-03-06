@@ -1,6 +1,6 @@
 import numpy as np
 
-def constant_velocity_def(x,y,z,t,learning_rate,num_iterations):
+def constant_velocity_def(x,y,z,t,learning_rate,num_iterations,tolerance):
 
     # Initialize velocities and constants
     velocity_x, velocity_y, velocity_z = (x[-1] - x[0]) / (t[-1] - t[0]), (y[-1] - y[0]) / (t[-1] - t[0]), (z[-1] - z[0]) / (t[-1] - t[0])
@@ -45,9 +45,9 @@ def constant_velocity_def(x,y,z,t,learning_rate,num_iterations):
         diff_velocity_z = learning_rate * grad_sum_of_squares_velocity_z
 
         # Convergence check
-        if np.abs(diff_constant_coefficient_x) < 0.0001 and np.abs(diff_velocity_x) < 0.0001 and np.abs(
-                diff_constant_coefficient_y) < 0.0001 and np.abs(diff_velocity_y) < 0.0001 and np.abs(
-            diff_constant_coefficient_z) < 0.0001 and np.abs(diff_velocity_z) < 0.0001:
+        if np.abs(diff_constant_coefficient_x) < tolerance and np.abs(diff_velocity_x) < tolerance and np.abs(
+                diff_constant_coefficient_y) < tolerance and np.abs(diff_velocity_y) < tolerance and np.abs(
+            diff_constant_coefficient_z) < tolerance and np.abs(diff_velocity_z) < tolerance:
             break
 
         # Update parameters
