@@ -9,11 +9,6 @@ def plot_trajectory(x,y,z):
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
 
-    #Set limit for axes
-    # ax.set_xlim(-2, 2)
-    # ax.set_ylim(-5, 2)
-    # ax.set_zlim(0, 5)
-
     time = []
     for i in range(1, len(x)+1):
         time.append("T:" + str(i))
@@ -21,7 +16,7 @@ def plot_trajectory(x,y,z):
     # plotting
     ax.scatter(x, y, z)
     ax.plot3D(x, y, z)
-    # ax.set_title('Trajectory')
+    ax.set_title('Trajectory')
 
     # creating annotations for timestamps
     for i, txt in enumerate(time):

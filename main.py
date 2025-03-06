@@ -26,7 +26,7 @@ fig_1.savefig('./output/Trajectory_plot.png')
 
 # Set learning rate and number of iterations
 learning_rate = 0.01
-num_iterations = 200
+num_iterations = 300
 tolerance = 0.0001
 constant_coefficient_x, velocity_x, constant_coefficient_y, velocity_y, constant_coefficient_z, velocity_z, SSE_x, SSE_y, SSE_z = constant_velocity_def(x, y, z, t, learning_rate, num_iterations,tolerance)
 
