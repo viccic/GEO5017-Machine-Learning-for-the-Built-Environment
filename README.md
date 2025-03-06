@@ -8,10 +8,10 @@ The first on is a simple regression specified in constant_velocity.py, the secon
 Both methods make use of a gradient descent to iteratively approach the optimal solution. This is specified in gradient_descent.py. 
 
 ## Output
-
+When running main.py the code will print:
 * The parameters of the linear regression and polynomial regression
-* The estimated next location
-* Graphs showing the path of the drone compared to the estimates
+* The estimated next location for the acceleration model
+Additionally, three graphs showing the path of the drone compared to the estimates will be saved to the output folder
 
 ## Setup Instructions
 Install dependencies:
@@ -21,7 +21,9 @@ Install dependencies:
 ## Running the Code
 In main.py:
 * Specify 3D input points
-* Specify Learning Rate 
-* Specify Iterations
+For each model the user can customize:
+* Learning Rate 
+* Maximum number of iterations
+* Tolerance
 
 When the output results in very high values, the learning rate might be too large
