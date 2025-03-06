@@ -4,6 +4,14 @@ from constant_velocity_case import constant_velocity_def
 from constant_acceleration_case import constant_acceleration_def
 from visualize_initial_plus_estimated_positions import visualize
 
+# x = np.array([2.0, 1.08, -0.83, -1.97, -1.31, 0.57, 0.035])
+# y = np.array([0.0, 1.68, 1.82, 0.28, -1.51, -1.91, -4.601])
+# z = np.array([1.0, 2.38, 2.49, 2.15, 2.59, 4.32, 4.883])
+#
+# t = np.array([1,2,3,4,5,6,7])
+#
+# fig_3 = plot_trajectory(x,y,z)
+
 # Importing data
 
 # defining positions in 3 axis
